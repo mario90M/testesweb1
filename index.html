@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>food flach</title>
+    <style>
+        body {
+            background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            min-height: 100vh;
+        }
+        header, p, nav {
+            background: rgba(255,255,255,0.8);
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 12px;
+            max-width: 500px;
+            text-align: center;
+        }
+        /* Carrossel diferenciado */
+        .carrossel-container {
+            max-width: 600px;
+            margin: 30px auto 0 auto;
+            position: relative;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 6px 24px rgba(255,102,0,0.18);
+            background: rgba(255,255,255,0.7);
+        }
+        .carrossel-slide {
+            display: none;
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            animation: fadeInScale 1s;
+        }
+        .carrossel-slide.active {
+            display: block;
+        }
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .carrossel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,102,0,0.8);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 1.5em;
+            cursor: pointer;
+            z-index: 2;
+            transition: background 0.2s;
+        }
+        .carrossel-btn:hover {
+            background: #e65c00;
+        }
+        .carrossel-btn.prev {
+            left: 10px;
+        }
+        .carrossel-btn.next {
+            right: 10px;
+        }
+        .carrossel-dots {
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+        }
+        .carrossel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ff6600;
+            opacity: 0.5;
+            border: 2px solid #fff;
+            cursor: pointer;
+            transition: opacity 0.2s, background 0.2s;
+        }
+        .carrossel-dot.active {
+            opacity: 1;
+            background: #fff;
+            border: 2px solid #ff6600;
+        }
+        .produtos-section {
+            background: rgba(255,255,255,0.9);
+            margin: 30px auto;
+            padding: 30px 20px;
+            border-radius: 16px;
+            max-width: 900px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+        }
+        .produtos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 24px;
+        }
+        .produto-card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            padding: 16px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        .produto-card:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 6px 20px rgba(255, 102, 0, 0.15);
+        }
+        .produto-card img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        .produto-nome {
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+        .produto-preco {
+            color: #ff6600;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+        .btn-comprar {
+            background: #ff6600;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 18px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+        .btn-comprar:hover {
+            background: #e65c00;
+        }
+        .btn-cadastro {
+            display: block;
+            margin: 30px auto 0 auto;
+            background: #ff6600;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 14px 32px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(255,102,0,0.12);
+            transition: background 0.2s;
+        }
+        .btn-cadastro:hover {
+            background: #e65c00;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>food flach</h1>
+    </header>
+    <p>Bem-vindo à food flach! Aqui você encontra uma variedade de doces deliciosos para todos os gostos.</p>
+    <nav>
+        <a href="sobre.html">Sobre</a> |
+        <a href="contato.html">Contato</a>
+    </nav>
+
+    <!-- Carrossel diferenciado -->
+    <div class="carrossel-container" id="carrossel">
+        <button class="carrossel-btn prev" onclick="mudarSlide(-1)">&#10094;</button>
+        <img class="carrossel-slide active" src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=80" alt="Doces 1">
+        <img class="carrossel-slide" src="https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=600&q=80" alt="Doces 2">
+        <img class="carrossel-slide" src="https://images.unsplash.com/photo-1464306076886-debca5e8a6b0?auto=format&fit=crop&w=600&q=80" alt="Doces 3">
+        <img class="carrossel-slide" src="https://images.unsplash.com/photo-1505250469679-203ad9ced0cb?auto=format&fit=crop&w=600&q=80" alt="Doces 4">
+        <button class="carrossel-btn next" onclick="mudarSlide(1)">&#10095;</button>
+        <div class="carrossel-dots">
+            <span class="carrossel-dot active" onclick="irParaSlide(0)"></span>
+            <span class="carrossel-dot" onclick="irParaSlide(1)"></span>
+            <span class="carrossel-dot" onclick="irParaSlide(2)"></span>
+            <span class="carrossel-dot" onclick="irParaSlide(3)"></span>
+        </div>
+    </div>
+
+    <section class="produtos-section">
+        <h2>Produtos em Destaque</h2>
+        <div class="produtos-grid">
+            <div class="produto-card">
+                <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=200&q=80" alt="Brigadeiro">
+                <div class="produto-nome">Brigadeiro</div>
+                <div class="produto-preco">R$ 2,50</div>
+                <button class="btn-comprar">Comprar</button>
+            </div>
+            <div class="produto-card">
+                <img src="https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=200&q=80" alt="Bala de Goma">
+                <div class="produto-nome">Bala de Goma</div>
+                <div class="produto-preco">R$ 1,00</div>
+                <button class="btn-comprar">Comprar</button>
+            </div>
+            <div class="produto-card">
+                <img src="https://images.unsplash.com/photo-1464306076886-debca5e8a6b0?auto=format&fit=crop&w=200&q=80" alt="Pirulito">
+                <div class="produto-nome">Pirulito</div>
+                <div class="produto-preco">R$ 0,80</div>
+                <button class="btn-comprar">Comprar</button>
+            </div>
+            <div class="produto-card">
+                <img src="https://images.unsplash.com/photo-1505250469679-203ad9ced0cb?auto=format&fit=crop&w=200&q=80" alt="Chocolate">
+                <div class="produto-nome">Chocolate</div>
+                <div class="produto-preco">R$ 3,00</div>
+                <button class="btn-comprar">Comprar</button>
+            </div>
+        </div>
+    </section>
+
+    <button class="btn-cadastro" onclick="window.location.href='cadastro.html'">Cadastre-se no site</button>
+
+    <script>
+        // Carrossel diferenciado
+        let slideAtual = 0;
+        const slides = document.querySelectorAll('.carrossel-slide');
+        const dots = document.querySelectorAll('.carrossel-dot');
+        let intervalo = setInterval(() => mudarSlide(1), 3500);
+
+        function mostrarSlide(n) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === n);
+                dots[i].classList.toggle('active', i === n);
+            });
+            slideAtual = n;
+        }
+
+        function mudarSlide(delta) {
+            let novo = slideAtual + delta;
+            if (novo < 0) novo = slides.length - 1;
+            if (novo >= slides.length) novo = 0;
+            mostrarSlide(novo);
+            reiniciarIntervalo();
+        }
+
+        function irParaSlide(n) {
+            mostrarSlide(n);
+            reiniciarIntervalo();
+        }
+
+        function reiniciarIntervalo() {
+            clearInterval(intervalo);
+            intervalo = setInterval(() => mudarSlide(1), 3500);
+        }
+    </script>
+</body>
+</html>
